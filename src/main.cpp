@@ -9,6 +9,18 @@
 
 
 #include <unordered_map>
+#include <cmath>
+
+using namespace std;
+
+
+
+static double distance(double a, double b)
+{
+
+}
+
+
 
 int main()
 {
