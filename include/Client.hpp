@@ -8,6 +8,7 @@
 #ifndef CLIENT_HPP_
 #define CLIENT_HPP_
 
+#include "Position.hpp"
 #include "Wifi.hpp"
 
 class Client : public Position
@@ -15,15 +16,16 @@ class Client : public Position
 private:
 	Wifi* station;
 public:
-	Client(double x, double y);
+	Client(Real x, Real y);
 	virtual ~Client();
 
-	double getSNR();
-	double getAlohaSpeed();
-	double getBER();
-	double getDropRate(const size_t& MTU);
-	double getTCPSpeed(const size_t& MTU);
-	double getRTT(const size_t& MTU);
+	Real getSNR();
+	Real getAlohaSpeed();
+	Real getBER();
+	Real getDropRate(const size_t& MTU);
+	Real getTCPSpeed(const size_t& MTU);
+	Real getRTT(const size_t& MTU);
+	Real getStationDistance();
 
 	friend void Wifi::addClient(Client* client);
 	friend void Wifi::removeClient(Client* client);

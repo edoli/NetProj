@@ -9,7 +9,7 @@
 #include "Client.hpp"
 #include <cassert>
 
-Wifi::Wifi(double x, double y, double signal, double speed, double baseNoise) : Position(x,y)
+Wifi::Wifi(Real x, Real y, Real signal, Real speed, Real baseNoise) : Position(x,y)
 {
 	this->signal = signal;
 	this->speed = speed;
@@ -24,17 +24,19 @@ void Wifi::addClient(Client* client)
 {
 	assert(client->station == nullptr);
 	this->clients.insert(client);
+	client->station = this;
 }
 void Wifi::removeClient(Client* client)
 {
 	assert(client->station == this);
 	this->clients.erase(client);
+	client->station = nullptr;
 }
-double Wifi::getBaseSignal()
+Real Wifi::getBaseSignal()
 {
 	return this->signal;
 }
-double Wifi::getBaseSpeed()
+Real Wifi::getBaseSpeed()
 {
 	return this->speed;
 }
@@ -43,7 +45,7 @@ size_t Wifi::getClientCount()
 	return this->clients.size();
 }
 
-double Wifi::getBaseNoise()
+Real Wifi::getBaseNoise()
 {
-	return this->getBaseNoise();
+	return this->baseNoise;
 }

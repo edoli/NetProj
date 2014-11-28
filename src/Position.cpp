@@ -7,7 +7,7 @@
 
 #include "Position.hpp"
 
-Position::Position(double x, double y)
+Position::Position(Real x, Real y)
 {
 	this->x = x;
 	this->y = y;
@@ -18,12 +18,18 @@ Position::~Position()
 
 }
 
-double Position::distanceSquare(const Position& a, const Position& b)
+void Position::setPosition(Real x, Real y)
+{
+	this->x = x;
+	this->y = y;
+}
+
+Real Position::distanceSquare(const Position& a, const Position& b)
 {
 	return (a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y);
 }
 
-double Position::distance(const Position& a, const Position& b)
+Real Position::distance(const Position& a, const Position& b)
 {
 	return sqrt(distanceSquare(a,b));
 }

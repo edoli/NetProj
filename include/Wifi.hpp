@@ -19,19 +19,19 @@ class Wifi : public Position
 {
 private:
 	std::unordered_set<Client*> clients;
-	double signal;
-	double speed;
-	double baseNoise;
+	Real signal;
+	Real speed;
+	Real baseNoise;
 public:
-	Wifi(double x, double y, double signal, double speed, double baseNoise);
+	Wifi(Real x, Real y, Real signal, Real speed, Real baseNoise);
 	virtual ~Wifi();
 
 	void addClient(Client* client);
 	void removeClient(Client* client);
-	double getBaseSignal();
-	double getBaseSpeed();
+	Real getBaseSignal();
+	Real getBaseSpeed();
 	size_t getClientCount();
-	double getBaseNoise();
+	Real getBaseNoise();
 };
 
 #endif /* WIFI_HPP_ */

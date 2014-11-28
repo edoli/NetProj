@@ -9,7 +9,7 @@
 #include <cmath>
 #include <cassert>
 
-Client::Client(double x, double y) : Position(x,y)
+Client::Client(Real x, Real y) : Position(x,y)
 {
 	this->station = nullptr;
 }
@@ -19,49 +19,55 @@ Client::~Client()
 
 }
 
-double Client::getSNR()
+Real Client::getSNR()
 {
 	assert(this->station != nullptr);
-	double signal = this->station->getBaseSignal();
+	Real signal = this->station->getBaseSignal();
 	signal = signal/Position::distanceSquare(*this, *this->station);
-	double noise = this->station->getBaseNoise();
+	Real noise = this->station->getBaseNoise();
 
 	return signal/noise;
 }
-double Client::getAlohaSpeed()
+Real Client::getAlohaSpeed()
 {
 	assert(this->station != nullptr);
-	double N = this->station->getClientCount();
+	Real N = this->station->getClientCount();
 
-	double lnResult = (N - 1.0) * log(1.0 - (1.0 / N)) - log(N);
-	return exp(lnResult);
+	Real lnResult = (N - 1.0) * log(1.0 - (1.0 / N)) - log(N);
+	return exp(lnResult) * this->station->getBaseSpeed();
 }
-double Client::getBER()
+Real Client::getBER()
 {
 	assert(this->station != nullptr);
-	double snr = getSNR();
+	Real snr = getSNR();
 
 	return 0.5 * erfc(snr);
 }
-double Client::getDropRate(const size_t& MTU)
+Real Client::getDropRate(const size_t& MTU)
 {
 	assert(this->station != nullptr);
-	double mtu = MTU;
-	double ber = getBER();
+	Real mtu = MTU;
+	Real ber = getBER();
 	return 1.0 - pow( (1 - ber) , mtu);
 }
-double Client::getTCPSpeed(const size_t& MTU)
+Real Client::getTCPSpeed(const size_t& MTU)
 {
 	assert(this->station != nullptr);
-	double mtu = MTU;
-	double rtt = getRTT(MTU);
-	double loss = getDropRate(MTU);
+	Real mtu = MTU;
+	Real rtt = getRTT(MTU);
+	Real loss = getDropRate(MTU);
+	Real alohaSpeed = getAlohaSpeed();
 
-	return mtu / ( rtt * sqrt(2 * loss / 3) );
+	return std::min(alohaSpeed, (1 -loss) * (mtu / ( rtt * sqrt(2 * loss / 3) )));
 }
-double Client::getRTT(const size_t& MTU)
+Real Client::getRTT(const size_t& MTU)
 {
 	assert(this->station != nullptr);
-	double mtu = MTU;
-	return mtu / this->station->getBaseSpeed();
+	Real mtu = MTU;
+	return 4.0 * mtu / this->getAlohaSpeed();
+}
+
+Real Client::getStationDistance()
+{
+	return Position::distance(*this, *this->station);
 }

@@ -9,19 +9,22 @@
 #define POSITION_HPP_
 
 #include <cmath>
+typedef double Real;
 
 class Position
 {
 private:
-	double x;
-	double y;
+	Real x;
+	Real y;
 
 public:
-	Position(double x, double y);
+	Position(Real x, Real y);
 	virtual ~Position();
 
-	static double distance(const Position& a, const Position& b);
-	static double distanceSquare(const Position& a, const Position& b);
+	void setPosition(Real x, Real y);
+
+	static Real distance(const Position& a, const Position& b);
+	static Real distanceSquare(const Position& a, const Position& b);
 };
 
 
