@@ -18,7 +18,7 @@ private:
 
 public:
 	Position(double x, double y);
-	~virtual Position();
+	virtual ~Position();
 
 	static double distance(const Position& a, const Position& b);
 	static double distanceSquare(const Position& a, const Position& b);

@@ -9,17 +9,27 @@
 #define WIFI_HPP_
 
 #include "Position.hpp"
+#include <unordered_set>
+#include <cstdint>
+#include <cstddef>
 
 class Client;
 
 class Wifi : public Position
 {
+private:
+	std::unordered_set<Client*> clients;
+	double signal;
+	double speed;
 public:
-	Wifi(double x, double y);
+	Wifi(double x, double y, double signal, double speed);
 	virtual ~Wifi();
 
-	void addClient();
-	void getClientCount();
+	void addClient(Client* client);
+	void removeClient(Client* client);
+	double getBaseSignal();
+	double getBaseSpeed();
+	size_t getClientCount();
 };
 
 #endif /* WIFI_HPP_ */
