@@ -9,10 +9,11 @@
 #include "Client.hpp"
 #include <cassert>
 
-Wifi::Wifi(double x, double y, double signal, double speed) : Position(x,y)
+Wifi::Wifi(double x, double y, double signal, double speed, double baseNoise) : Position(x,y)
 {
 	this->signal = signal;
 	this->speed = speed;
+	this->baseNoise = baseNoise;
 }
 Wifi::~Wifi()
 {
@@ -40,4 +41,9 @@ double Wifi::getBaseSpeed()
 size_t Wifi::getClientCount()
 {
 	return this->clients.size();
+}
+
+double Wifi::getBaseNoise()
+{
+	return this->getBaseNoise();
 }

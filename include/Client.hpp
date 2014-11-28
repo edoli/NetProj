@@ -18,6 +18,13 @@ public:
 	Client(double x, double y);
 	virtual ~Client();
 
+	double getSNR();
+	double getAlohaSpeed();
+	double getBER();
+	double getDropRate(const size_t& MTU);
+	double getTCPSpeed(const size_t& MTU);
+	double getRTT(const size_t& MTU);
+
 	friend void Wifi::addClient(Client* client);
 	friend void Wifi::removeClient(Client* client);
 };

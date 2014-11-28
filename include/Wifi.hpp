@@ -21,8 +21,9 @@ private:
 	std::unordered_set<Client*> clients;
 	double signal;
 	double speed;
+	double baseNoise;
 public:
-	Wifi(double x, double y, double signal, double speed);
+	Wifi(double x, double y, double signal, double speed, double baseNoise);
 	virtual ~Wifi();
 
 	void addClient(Client* client);
@@ -30,6 +31,7 @@ public:
 	double getBaseSignal();
 	double getBaseSpeed();
 	size_t getClientCount();
+	double getBaseNoise();
 };
 
 #endif /* WIFI_HPP_ */
