@@ -28,6 +28,7 @@ public:
 
 	void addClient(Client* client);
 	void removeClient(Client* client);
+	void clearClient();
 	Real getBaseSignal();
 	Real getBaseSpeed();
 	size_t getClientCount();

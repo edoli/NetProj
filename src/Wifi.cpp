@@ -32,6 +32,14 @@ void Wifi::removeClient(Client* client)
 	this->clients.erase(client);
 	client->station = nullptr;
 }
+void Wifi::clearClient()
+{
+	for (auto client : this->clients)
+	{
+		client->clearStation();
+	}
+	this->clients.clear();
+}
 Real Wifi::getBaseSignal()
 {
 	return this->signal;

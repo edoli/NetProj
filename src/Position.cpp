@@ -24,6 +24,16 @@ void Position::setPosition(Real x, Real y)
 	this->y = y;
 }
 
+Real Position::getX()
+{
+	return this->x;
+}
+
+Real Position::getY()
+{
+	return this->y;
+}
+
 Real Position::distanceSquare(const Position& a, const Position& b)
 {
 	return (a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y);

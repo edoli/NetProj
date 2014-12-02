@@ -27,6 +27,8 @@ public:
 	Real getRTT(const size_t& MTU);
 	Real getStationDistance();
 
+	void clearStation();
+
 	friend void Wifi::addClient(Client* client);
 	friend void Wifi::removeClient(Client* client);
 };

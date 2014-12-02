@@ -1,2 +1,7 @@
 /.*
 !.gitignore
+
+build/
+.make*
+.project
+.cproject

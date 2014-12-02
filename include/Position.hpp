@@ -23,6 +23,9 @@ public:
 
 	void setPosition(Real x, Real y);
 
+	Real getX();
+	Real getY();
+
 	static Real distance(const Position& a, const Position& b);
 	static Real distanceSquare(const Position& a, const Position& b);
 };

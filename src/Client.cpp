@@ -71,3 +71,7 @@ Real Client::getStationDistance()
 {
 	return Position::distance(*this, *this->station);
 }
+void Client::clearStation()
+{
+	this->station = nullptr;
+}
