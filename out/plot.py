@@ -1,19 +1,19 @@
 from Tkinter import *
 
-w = 1536
+w = 512
 h = 512
 
-def cc(test_name, cv, x, y):
-	cv.create_rectangle((1,1,512,512))
+def cc(test_name, cv, cx, cy):
+	cv.create_rectangle((cx + 1, cy + 1,cx + 512, cy + 512))
 
 	def client(x, y):
-		x = (x * w) / 100
-		y = (y * h) / 100
+		x = cx + (x * w) / 100
+		y = cy + (y * h) / 100
 		cv.create_oval((x,y,x+5,y+5),fill="#e74c3c")
 
 	def wifi(x, y):
-		x = (x * w) / 100
-		y = (y * h) / 100
+		x = cx + (x * w) / 100
+		y = cy + (y * h) / 100
 		cv.create_oval((x,y,x+5,y+5),fill="#3498db")
 
 	f = open('%s_test.txt' % (test_name))
@@ -37,7 +37,7 @@ def cc(test_name, cv, x, y):
 
 root = Tk()
 
-cv = Canvas(root, bg="white", width=w, height=h)
+cv = Canvas(root, bg="white", width=w*3, height=h)
 
 
 cc('normal', cv, 0, 0)
@@ -46,7 +46,7 @@ cc('gravity', cv, 1024, 0)
 
 #root.title('%s' % (test_name))
 root.resizable(width=FALSE, height=FALSE)
-root.geometry('{}x{}'.format(w + 12, h + 4))
+root.geometry('{}x{}'.format(w*3 + 12, h + 4))
 root.mainloop()
 
 
