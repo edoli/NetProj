@@ -217,6 +217,24 @@ int main()
 
 	result("kmean", wifiSet, clientSet, MTU);
 
+	for(size_t i = 0; i < wifiSet.size(); i++)
+	{
+		auto wifi = wifiSet[i];
+		wifi->setPosition(xSet[i], ySet[i]);
+	}
+	Reposition::kmeanRandom(wifiSet, clientSet);
+
+	result("kmean Random", wifiSet, clientSet, MTU);
+
+	for(size_t i = 0; i < wifiSet.size(); i++)
+	{
+		auto wifi = wifiSet[i];
+		wifi->setPosition(xSet[i], ySet[i]);
+	}
+	Reposition::kmeanPenalty(wifiSet, clientSet);
+
+	result("kmean Penalty", wifiSet, clientSet, MTU);
+
 
 	for(size_t i = 0; i < wifiSet.size(); i++)
 	{
@@ -228,6 +246,14 @@ int main()
 	result("gravity", wifiSet, clientSet, MTU);
 
 
+	for(size_t i = 0; i < wifiSet.size(); i++)
+	{
+		auto wifi = wifiSet[i];
+		wifi->setPosition(xSet[i], ySet[i]);
+	}
+	Reposition::gravityPenalty(wifiSet, clientSet);
+
+	result("gravity Penalty", wifiSet, clientSet, MTU);
 	/*
 	printf("Min speed %.9f\n", minSpeed);
 	printf("Max speed %.9f\n", maxSpeed);

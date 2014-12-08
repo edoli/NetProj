@@ -9,12 +9,12 @@ def cc(test_name, cv, cx, cy):
 	def client(x, y):
 		x = cx + (x * w) / 100
 		y = cy + (y * h) / 100
-		cv.create_oval((x,y,x+5,y+5),fill="#e74c3c")
+		cv.create_oval((x-3,y-3,x+3,y+3),fill="#e74c3c")
 
 	def wifi(x, y):
 		x = cx + (x * w) / 100
 		y = cy + (y * h) / 100
-		cv.create_oval((x,y,x+5,y+5),fill="#3498db")
+		cv.create_oval((x-5,y-5,x+5,y+5),fill="#3498db")
 
 	f = open('%s_test.txt' % (test_name))
 	data = f.read().split('-----')
@@ -40,9 +40,9 @@ root = Tk()
 cv = Canvas(root, bg="white", width=w*3, height=h)
 
 
-cc('normal', cv, 0, 0)
-cc('kmean', cv, 512, 0)
-cc('gravity', cv, 1024, 0)
+cc('kmean', cv, 0, 0)
+cc('kmean Random', cv, 512, 0)
+cc('kmean Penalty', cv, 1024, 0)
 
 #root.title('%s' % (test_name))
 root.resizable(width=FALSE, height=FALSE)
